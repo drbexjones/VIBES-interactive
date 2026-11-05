@@ -1,1 +1,67 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#103f33"><title>VIBES Interactive | Version 2.1</title><link rel="stylesheet" href="style.css"></head><body><header><div class="wrap hero"><div><div class="eyebrow">PROFESSIONAL ACCOUNTABILITY TOOL · VERSION 2.1</div><h1>VIBES<span> Interactive</span></h1><p class="tagline">Evaluate AI-assisted content before finalizing, sharing, or using it.</p></div><div class="hero-mark">V · I · B · E · S</div></div></header><main class="wrap"><section class="notice"><strong>Before you begin</strong><p>Use this checklist to review AI-assisted content. Do not enter names, protected health information, identifiable student records, or other confidential details. This website does not collect or transmit responses; answers are held only in this browser tab until you close or refresh it.</p><p>Confirm separately that the AI tool and workflow were authorized for the task. Completing this checklist does not establish that an AI tool is approved or that content is clinically safe.</p><label class="consent"><input id="ack" type="checkbox"> I understand and will not enter confidential information.</label></section><section class="progress-panel"><div class="progress-line"><strong>Review progress</strong><span id="count">0 of 16 reviewed</span></div><div class="track"><div id="bar"></div></div><p id="status" aria-live="polite">Select an answer for each item.</p></section><div id="domains"></div><section class="summary" id="summary"><h2>Review summary</h2><p>Responses identify areas to verify or revise; they are not a validated score or certification.</p><div id="summary-content"></div><div class="actions"><button id="print" type="button">Print / Save as PDF</button><button id="reset" class="secondary" type="button">Start new review</button></div></section><section class="research"><h2>About this checklist</h2><p>The VIBES AI Checklist has 16 items in five domains: Validity, Integrity, Bias, Evidence, and Safety. Initial expert-panel content-validity findings apply to the Version 1 item statements. Four items were subsequently revised for Version 2.1, and the revised wording has not been re-rated. This interactive presentation is not independently validated.</p><p><strong>Attribution:</strong> VIBES AI Checklist, Version 2.1 · Rebecca L. Jones, EdD, CCC-SLP. For educational and professional review use. Consult the complete checklist and its supporting rationales for more context.</p></section></main><footer>VIBES · Professional judgment remains with the human reviewer.</footer><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#104938">
+<meta name="description" content="VIBES AI Checklist Version 2.1: a structured, private, browser-based review of AI-assisted content.">
+<title>VIBES Interactive | AI Checklist v2.1</title>
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to checklist</a>
+<header class="site-header">
+  <div class="wrap header-row"><a class="brand" href="#top" aria-label="VIBES Interactive home">VIBES<span class="brand-dot">.</span></a><span class="header-tag">AI CHECKLIST <b>v2.1</b></span></div>
+</header>
+<main id="main">
+  <section class="hero" id="top"><div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">AN EVIDENCE-INFORMED PROFESSIONAL ACCOUNTABILITY TOOL</div>
+      <h1>Better AI use starts with <em>better questions.</em></h1>
+      <p class="hero-copy">Evaluate AI-generated or AI-assisted content before you finalize, share, or put it into practice. Review all 16 checklist items across five domains, with the original rationale available for every item.</p>
+      <div class="hero-actions"><a class="btn primary" href="#checklist">Start your review <span aria-hidden="true">↗</span></a><a class="btn ghost" href="#how-to">How it works</a></div>
+      <p class="byline">Rebecca L. Jones, EdD, CCC-SLP · Oklahoma Baptist University · 2026</p>
+    </div>
+    <div class="hero-art" aria-label="The five VIBES domains">
+      <div class="art-title">THE FIVE DOMAINS</div>
+      <div class="art-letters"><span>V</span><span>I</span><span>B</span><span>E</span><span>S</span></div>
+      <div class="art-labels"><span>Validity</span><span>Integrity</span><span>Bias</span><span>Evidence</span><span>Safety</span></div>
+      <div class="art-bottom">CHECK THE WORK. KEEP THE JUDGMENT.</div>
+    </div>
+  </div></section>
+  <section class="wrap instructions" id="how-to">
+    <div class="section-kicker">BEFORE YOU BEGIN</div><h2>Use VIBES after AI use is permitted.</h2>
+    <p>Use this checklist after you have decided why you are using AI and confirmed that its use is permitted. Before AI-generated or AI-assisted content is finalized, shared, or put into practice, review each item, including but not limited to: clinical documentation, diagnostic reports, treatment plans, progress notes, session reports, and/or client-centered academic assignments such as case studies.</p>
+    <div class="instruction-grid">
+      <div><strong>01 · Review each statement</strong><p>Mark <b>Met</b> only when every applicable part of the statement is satisfied.</p></div>
+      <div><strong>02 · Handle exceptions carefully</strong><p>Use <b>N/A</b> only when an item does not apply. N/A counts as reviewed and is recorded separately.</p></div>
+      <div><strong>03 · Resolve concerns</strong><p>If an applicable item is not met or is unclear, pause to verify, revise, or seek guidance before using the work.</p></div>
+    </div>
+    <div class="privacy"><strong>Privacy first.</strong> Do not enter patient information, protected student records, names, or case details into this website. Your selections stay in this browser tab and are not sent to a server.</div>
+  </section>
+  <section class="review-section" id="checklist"><div class="wrap">
+    <div class="review-heading"><div><div class="section-kicker">THE INTERACTIVE CHECKLIST</div><h2>Review with intention.</h2><p>Each item below uses the exact Version 2.1 statement and rationale from the supplied checklist.</p></div>
+      <div class="progress-panel"><div class="progress-top"><strong id="progress-count">0 of 16 reviewed</strong><span id="progress-percent">0%</span></div><div class="progress-track"><div id="progress-fill"></div></div><small>Responses are not saved after you close or refresh this page.</small></div>
+    </div>
+    <nav class="domain-nav" aria-label="Jump to a domain" id="domain-nav"></nav>
+    <div id="domain-list"></div>
+    <section class="results" id="results" aria-labelledby="results-title">
+      <div class="section-kicker">YOUR REVIEW SUMMARY</div><h2 id="results-title">What needs attention?</h2>
+      <p id="summary-intro">Complete the checklist to see a domain-by-domain summary.</p>
+      <div class="stats" id="stats"></div>
+      <div id="attention-list"></div>
+      <div class="results-actions"><button class="btn primary" id="print-btn" type="button">Print / save PDF summary</button><button class="btn outline" id="reset-btn" type="button">Clear responses</button></div>
+      <p class="smallprint">This is a review aid, not a validated score, certification, or guarantee of safety. Professional accountability remains with the user.</p>
+    </section>
+  </div></section>
+  <section class="wrap about" id="about">
+    <div class="section-kicker">ABOUT THIS TOOL</div><h2>Evidence-informed, with clear limits.</h2>
+    <p>The VIBES AI Checklist is a 16-item tool organized into Validity, Integrity, Bias, Evidence, and Safety. Initial content-validity evidence relates to Version 1 item statements. Version 2.1 includes subsequent wording revisions that have not been re-rated. This interactive implementation has not been independently validated.</p>
+    <p>All checklist statements and rationales are reproduced from the supplied Version 2.1 document. The digital response options <b>Met / Not met / Unclear / N/A</b> are an interface adaptation of the original checkbox and N/A instructions, not a separately validated response scale.</p>
+    <details class="refs"><summary>View source checklist references <span aria-hidden="true">＋</span></summary><ol id="references"></ol></details>
+  </section>
+</main>
+<footer><div class="wrap footer-inner"><div><b>VIBES</b> <span>AI Checklist · Version 2.1</span><p>© 2026 Rebecca L. Jones, EdD, CCC-SLP</p></div><div>Checklist content: <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-ND 4.0</a><br>DOI: To be added</div></div></footer>
+</body>
+</html>

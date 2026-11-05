@@ -1,1 +1,115 @@
-const DOMAIN=[['V','Validity','Clinical accuracy and reasoning'],['I','Integrity','Source verification and hallucination detection'],['B','Bias','Cultural and linguistic responsiveness'],['E','Evidence','Documentation grounded in observed data'],['S','Safety','Privacy, compliance, and ethical disclosure']];const ANSWERS=[['yes','Yes'],['no','No'],['unclear','Unclear'],['na','Not applicable']];let responses={};let items=[];const el=id=>document.getElementById(id);function render(){el('domains').innerHTML=DOMAIN.map(([letter,name,subtitle])=>`<section class="domain"><div class="domain-head"><span class="letter">${letter}</span><div><h2>${name}</h2><div class="domain-sub">${subtitle}</div></div></div>${items.filter(i=>i.id.startsWith(letter)).map(i=>`<div class="item" aria-disabled="${!el('ack').checked}"><div class="item-title"><span class="item-id">${i.id}</span><div><p>${escapeHTML(i.text)}</p><div class="choices" role="group" aria-label="Response to ${i.id}">${ANSWERS.map(([value,label])=>`<button class="choice" type="button" data-item="${i.id}" data-value="${value}" aria-pressed="${responses[i.id]===value}">${label}</button>`).join('')}</div></div></div></div>`).join('')}</section>`).join('');document.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>{if(!el('ack').checked)return;responses[b.dataset.item]=b.dataset.value;render()}));updateSummary()}function escapeHTML(t){return t.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function updateSummary(){const done=Object.keys(responses).length;el('count').textContent=`${done} of 16 reviewed`;el('bar').style.width=`${done/16*100}%`;const issues=items.filter(i=>responses[i.id]==='no'||responses[i.id]==='unclear');const na=items.filter(i=>responses[i.id]==='na');el('status').textContent=done===16?'All 16 items have a response. Review any unresolved concerns below.':`${16-done} item${16-done===1?'':'s'} remaining.`;const details=issues.length?`<h3>Needs verification or revision (${issues.length})</h3><ol class="summary-list">${issues.map(i=>`<li><strong>${i.id} · ${responses[i.id]==='no'?'No':'Unclear'}:</strong> ${escapeHTML(i.text)}</li>`).join('')}</ol>`:'<p>No items have been marked No or Unclear. Independently verify all answers before using the content.</p>';el('summary-content').innerHTML=`<p><strong>${done}/16 reviewed</strong> · ${issues.length} flagged · ${na.length} marked not applicable.</p>${details}${na.length?`<p><strong>Not applicable:</strong> ${na.map(i=>i.id).join(', ')}. Confirm each exclusion is appropriate.</p>`:''}${done<16?'<p><strong>Incomplete review:</strong> Some items have no response.</p>':''}<p><strong>Interpretation:</strong> Any No or Unclear response calls for verification, revision, or guidance before finalizing the content. A set of Yes responses is not a guarantee of safety or accuracy.</p>`}el('ack').addEventListener('change',render);el('reset').addEventListener('click',()=>{if(confirm('Clear all responses and start a new review?')){responses={};render();scrollTo({top:0,behavior:'smooth'})}});el('print').addEventListener('click',()=>window.print());fetch('items.json').then(r=>{if(!r.ok)throw Error('Cannot load checklist');return r.json()}).then(data=>{items=data;render()}).catch(()=>{el('domains').innerHTML='<p>Unable to load checklist items. Please use the published GitHub Pages URL rather than opening index.html directly from your computer.</p>'});
+'use strict';
+const responseLabels = [
+  {value:'met',label:'Met'},
+  {value:'not-met',label:'Not met'},
+  {value:'unclear',label:'Unclear'},
+  {value:'na',label:'N/A'}
+];
+const responses = {};
+let checklist;
+const el = (tag, className, text) => {
+  const n=document.createElement(tag);
+  if(className) n.className=className;
+  if(text!==undefined) n.textContent=text;
+  return n;
+};
+function build() {
+  const nav=document.getElementById('domain-nav');
+  const list=document.getElementById('domain-list');
+  for(const domain of checklist.domains) {
+    const domainItems=checklist.items.filter(i=>i.domain===domain.letter);
+    const link=el('a','',domain.letter+' · '+domain.name);
+    link.href='#domain-'+domain.letter;
+    nav.append(link);
+    const section=el('section','domain-section');
+    section.id='domain-'+domain.letter;
+    const head=el('div','domain-heading');
+    head.append(el('div','domain-letter',domain.letter));
+    const heading=el('div');
+    heading.append(el('h3','',domain.name),el('p','',domain.description));
+    head.append(heading);
+    section.append(head);
+    const container=el('div','domain-items');
+    for(const item of domainItems) {
+      const card=el('article','item');
+      const top=el('div','item-top');
+      top.append(el('div','item-id',item.id));
+      const body=el('div','item-body');
+      const statement=el('p','item-statement',item.statement);
+      const citation=el('span','item-refs',' ['+item.references+']');
+      statement.append(citation);
+      body.append(statement,el('p','rationale',item.rationale));
+      const options=el('div','choices');
+      options.setAttribute('role','group');
+      options.setAttribute('aria-label',item.id+' review response');
+      for(const opt of responseLabels) {
+        const label=el('label','choice');
+        const input=el('input');
+        input.type='radio';input.name=item.id;input.value=opt.value;
+        input.setAttribute('aria-label',item.id+': '+opt.label);
+        input.addEventListener('change',()=>{responses[item.id]=opt.value;update();});
+        label.append(input,el('span','',opt.label));
+        options.append(label);
+      }
+      const status=el('div','item-status');
+      status.id='status-'+item.id;
+      status.setAttribute('aria-live','polite');
+      body.append(options,status);
+      top.append(body);card.append(top);container.append(card);
+    }
+    section.append(container);list.append(section);
+  }
+  const refs=document.getElementById('references');
+  for(const reference of checklist.references) {
+    refs.append(el('li','',reference.replace(/^\[\d+\]\s*/,'')));
+  }
+  update();
+}
+function update(){
+  const items=checklist.items;
+  const completed=items.filter(i=>responses[i.id]);
+  const counts={met:0,'not-met':0,unclear:0,na:0};
+  for(const val of Object.values(responses)) counts[val]++;
+  const percent=Math.round(100*completed.length/items.length);
+  document.getElementById('progress-count').textContent=completed.length+' of '+items.length+' reviewed';
+  document.getElementById('progress-percent').textContent=percent+'%';
+  document.getElementById('progress-fill').style.width=percent+'%';
+  for(const item of items) {
+    const status=document.getElementById('status-'+item.id);
+    const value=responses[item.id];
+    status.textContent=value==='not-met'?'Action needed: verify, revise, or seek guidance.':value==='unclear'?'Unclear: pause and verify before use.':'';
+  }
+  const stats=document.getElementById('stats');stats.replaceChildren();
+  for(const [key,title] of [['met','Met'],['not-met','Not met'],['unclear','Unclear'],['na','N/A']]){
+    const box=el('div','stat');box.append(el('b','',String(counts[key])),el('span','',title));stats.append(box);
+  }
+  const intro=document.getElementById('summary-intro');
+  const unresolved=items.filter(i=>!responses[i.id]||responses[i.id]==='not-met'||responses[i.id]==='unclear');
+  if(completed.length===0) intro.textContent='Begin reviewing items above. Your summary will update as you go.';
+  else if(unresolved.length===0) intro.textContent='All 16 items have been reviewed. Confirm that all applicable statements are met before using the work. N/A items are recorded separately.';
+  else intro.textContent=unresolved.length+' item(s) remain unanswered, not met, or unclear. Resolve applicable concerns before using the work.';
+  const attention=document.getElementById('attention-list');attention.replaceChildren();
+  for(const domain of checklist.domains) {
+    const issues=unresolved.filter(i=>i.domain===domain.letter);
+    if(!issues.length) continue;
+    const group=el('div','attention-group');
+    group.append(el('h3','',domain.name+' · '+issues.length+' to review'));
+    const ul=el('ul');
+    for(const item of issues) {
+      const value=responses[item.id];
+      const label=value==='not-met'?'Not met':value==='unclear'?'Unclear':'Not answered';
+      ul.append(el('li','',item.id+' · '+label+': '+item.statement));
+    }
+    group.append(ul);attention.append(group);
+  }
+}
+document.getElementById('print-btn').addEventListener('click',()=>window.print());
+document.getElementById('reset-btn').addEventListener('click',()=>{
+  if(!window.confirm('Clear all responses from this review?')) return;
+  for(const key of Object.keys(responses)) delete responses[key];
+  document.querySelectorAll('input[type="radio"]').forEach(x=>x.checked=false);
+  update();document.getElementById('checklist').scrollIntoView({behavior:'smooth'});
+});
+fetch('checklist.json').then(r=>{if(!r.ok)throw new Error('Checklist data unavailable');return r.json();})
+  .then(data=>{checklist=data;build();})
+  .catch(()=>{document.getElementById('domain-list').textContent='Unable to load the checklist. Publish all website files together through GitHub Pages; opening index.html directly from your computer may not work.';});

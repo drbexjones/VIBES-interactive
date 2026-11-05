@@ -1,0 +1,162 @@
+{
+  "version": "2.1",
+  "year": 2026,
+  "author": "Rebecca L. Jones, EdD, CCC-SLP",
+  "institution": "Oklahoma Baptist University",
+  "domains": [
+    {
+      "letter": "V",
+      "name": "Validity",
+      "description": "Clinical accuracy and reasoning"
+    },
+    {
+      "letter": "I",
+      "name": "Integrity",
+      "description": "Source verification and hallucination detection"
+    },
+    {
+      "letter": "B",
+      "name": "Bias",
+      "description": "Cultural and linguistic responsiveness"
+    },
+    {
+      "letter": "E",
+      "name": "Evidence",
+      "description": "Documentation grounded in observed data"
+    },
+    {
+      "letter": "S",
+      "name": "Safety",
+      "description": "Privacy, compliance and ethical disclosure"
+    }
+  ],
+  "items": [
+    {
+      "id": "V1",
+      "domain": "V",
+      "statement": "All goals and recommendations fall within SLP scope of practice and are appropriate for this specific client's profile, not based on a generic or hypothetical presentation.",
+      "rationale": "AI cannot recognize SLP scope boundaries or see this client's history, baseline, or prior outcomes. Check each goal and recommendation against your scope and the client's record.",
+      "references": "6"
+    },
+    {
+      "id": "V2",
+      "domain": "V",
+      "statement": "Your own clinical judgment has not been overridden simply because AI produced a confident-looking output.",
+      "rationale": "In a mammography study, even experienced radiologists were swayed by incorrect AI suggestions; the same risk applies here. Trust your independent reasoning.",
+      "references": "2"
+    },
+    {
+      "id": "V3",
+      "domain": "V",
+      "statement": "Recommendations, goals, and treatment plans reflect the client's and family's stated values and priorities, not AI-generated assumptions.",
+      "rationale": "AI has no access to what the client or family said they wanted from therapy. Person-centered care requires that recommendations, goals, and treatment plans reflect the client's and family's stated priorities, not AI-generated assumptions about what those should be.",
+      "references": "10"
+    },
+    {
+      "id": "I1",
+      "domain": "I",
+      "statement": "Where citations, statistics, or quoted findings are included, each has been independently verified in the original source.",
+      "rationale": "AI fabricates plausible-sounding references and misrepresents data. Check each citation, statistic, and quote in the original source; remove anything you cannot verify. Check uncited claims against an authoritative source too.",
+      "references": "7"
+    },
+    {
+      "id": "I2",
+      "domain": "I",
+      "statement": "Clinical recommendations reflect current professional practice guidelines.",
+      "rationale": "AI knowledge cutoffs may predate current guidelines. Check current ASHA guidelines directly, plus any accreditation, licensure, or payer standards that apply to your setting.",
+      "references": "9"
+    },
+    {
+      "id": "B1",
+      "domain": "B",
+      "statement": "Dialectal features (e.g., African American English, regional dialects, bilingual or multilingual patterns) are not labeled as errors or clinical deficits.",
+      "rationale": "Speech recognition systems show documented bias against dialectal speech, and similar bias can appear in AI-generated text; this is bias, not a clinical finding. If a dialect is unfamiliar, check a reliable resource or consult a colleague. Also check for missing cultural and language perspectives.",
+      "references": "4"
+    },
+    {
+      "id": "B2",
+      "domain": "B",
+      "statement": "Recommendations, client descriptions, and clinical conclusions are not stereotypical or biased toward the population referenced in the prompt, whether the client is real or simulated.",
+      "rationale": "AI-generated text may reflect dominant cultural assumptions and stereotype clients given demographic details, extending bias documented in speech recognition. Check every part (recommendations, descriptions, conclusions) for assumptions beyond what is clinically known about this individual.",
+      "references": "4"
+    },
+    {
+      "id": "B3",
+      "domain": "B",
+      "statement": "Language about disability is appropriate and consistent with the client's stated preference (person-first or identity-first).",
+      "rationale": "AI inconsistently applies language preferences and defaults to pathologizing framing.",
+      "references": "9"
+    },
+    {
+      "id": "B4",
+      "domain": "B",
+      "statement": "AI-generated content that represents or speaks for the client accurately reflects this client's actual communication style, preferences, and self-expression.",
+      "rationale": "When AI generates content that represents or speaks for a client, there is a risk that it reflects normalized or AI-determined patterns rather than this individual's actual communication style and expressed preferences (e.g., AAC users, clients with aphasia, autistic clients).",
+      "references": "5, 10"
+    },
+    {
+      "id": "E1",
+      "domain": "E",
+      "statement": "Session notes, progress reports, and clinical documentation reflect actual clinician observation and reasoning, and are not based on AI-inferred or AI-generated content.",
+      "rationale": "AI writes plausible-sounding documentation that may not reflect what actually occurred in the session. AI may assist with drafting, but the final note must reflect what you observed.",
+      "references": "8"
+    },
+    {
+      "id": "E2",
+      "domain": "E",
+      "statement": "Goals are written in a measurable, client-specific format and reflect this client's individual profile rather than generic or AI-templated language.",
+      "rationale": "AI often writes vague or unmeasurable goals that could fit any client with the same diagnosis. \"AI-templated\" means generic wording not tied to this client's baseline, setting, or priorities; AI-drafted goals are fine once you individualize them. Check that each goal has measurable criteria and could not be moved to another client.",
+      "references": "6"
+    },
+    {
+      "id": "E3",
+      "domain": "E",
+      "statement": "The clinician or student can independently explain and defend every clinical decision in the submitted work.",
+      "rationale": "If the reasoning cannot be articulated without referencing the AI output, it reflects borrowed, not learned, clinical judgment.",
+      "references": "3"
+    },
+    {
+      "id": "E4",
+      "domain": "E",
+      "statement": "Client-facing materials generated with AI assistance are written at an appropriate reading level and use plain language accessible to the intended audience.",
+      "rationale": "AI frequently produces overly complex or jargon-heavy language that may not be accessible to clients, families, or caregivers. Review any client-facing content for readability before distribution.",
+      "references": "11"
+    },
+    {
+      "id": "S1",
+      "domain": "S",
+      "statement": "No strategies are present that would be inappropriate or potentially harmful given the client's full clinical picture.",
+      "rationale": "AI does not know this client's medications, sensory needs, medical history, or what has failed before. Check each strategy against the full clinical picture; if you are unsure it is safe or appropriate, consult your supervisor or the client's team before using it.",
+      "references": "6"
+    },
+    {
+      "id": "S2",
+      "domain": "S",
+      "statement": "Any protected information (PHI under HIPAA or student education records under FERPA) was handled only in AI tools and workflows authorized for that use, consistent with applicable privacy requirements and institutional policy.",
+      "rationale": "Entering PHI or identifiable student records into an unauthorized tool can violate privacy rules regardless of intent, and most consumer AI tools are not authorized for it. Opting out of data training does not by itself make a tool authorized. Check that the tool is approved for protected information (e.g., a business associate agreement or institutional approval). If none was entered, check this item.",
+      "references": "9, 12, 13"
+    },
+    {
+      "id": "S3",
+      "domain": "S",
+      "statement": "AI use has been disclosed according to course, program, or publication policy.",
+      "rationale": "Undisclosed AI use may violate professional and academic integrity standards even when AI use itself is permitted.",
+      "references": "1"
+    }
+  ],
+  "references": [
+    "[1] Aggarwal, K., Ravi, R., & Yerraguntla, K. (2025). Use of artificial intelligence tools by audiologists and speech-language therapists: An international survey of academicians. Journal of Otology, 20(1), 20-25. https://doi.org/10.26599/JOTO.2025.9540004",
+    "[2] Dratsch, T., Chen, X., Rezazade Mehrizi, M., Kloeckner, R., Mahringer-Kunz, A., Pusken, M., Baessler, B., Sauer, S., Maintz, D., & Pinto dos Santos, D. (2023). Automation bias in mammography. Radiology, 307(4), e222176. https://doi.org/10.1148/radiol.222176",
+    "[3] Natali, C., Marconi, L., Dias Duran, L. D., Miglioretti, M., & Cabitza, F. (2025). AI-induced deskilling in medicine: A mixed-method review and research agenda for healthcare and beyond. Artificial Intelligence Review, 58. https://doi.org/10.1007/s10462-025-11352-1",
+    "[4] Martin, J. L., & Wright, K. E. (2023). Bias in automatic speech recognition: The case of African American Language. Applied Linguistics, 44(4), 613-630. https://doi.org/10.1093/applin/amac066",
+    "[5] Scarinci, N., Holm, A., & Hemsley, B. (2024). Ethical conversations: What are the implications of AI for AAC development, use, and implementation? Journal of Clinical Practice in Speech-Language Pathology, 26(1), 101-107. https://doi.org/10.1080/22000259.2024.2316940",
+    "[6] Speech Pathology Australia. (2024). Artificial intelligence in speech pathology: Ethical considerations. https://speechpathologyaustralia.org.au/resource?resource=935",
+    "[7] Hanna, M., & Suchikova, Y. (2025). (Ir)responsible use of ChatGPT in speech-language pathology. International Journal of Language & Communication Disorders, 60, e70088. https://doi.org/10.1111/1460-6984.70088",
+    "[8] Topaz, M., Peltonen, L. M., & Zhang, Z. (2025). Beyond human ears: Navigating the uncharted risks of AI scribes in clinical practice. npj Digital Medicine, 8, 569. https://doi.org/10.1038/s41746-025-01895-6",
+    "[9] American Speech-Language-Hearing Association. (2023). Code of ethics. https://www.asha.org/policy/ethics/code-of-ethics/",
+    "[10] Forsgren, E., Ake, S., & Saldert, C. (2022). Person-centred care in speech-language therapy research and practice for adults: A scoping review. International Journal of Language and Communication Disorders, 57(2), 381-402. https://doi.org/10.1111/1460-6984.12690",
+    "[11] American Speech-Language-Hearing Association. (n.d.). Health literacy. https://www.asha.org/slp/healthliteracy/",
+    "[12] U.S. Department of Health and Human Services. (n.d.). Summary of the HIPAA Privacy Rule (45 C.F.R. Part 160 and Part 164, Subparts A and E). https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html",
+    "[13] Family Educational Rights and Privacy Act, 20 U.S.C. § 1232g; 34 C.F.R. Part 99. https://studentprivacy.ed.gov/ferpa"
+  ]
+}
